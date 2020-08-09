@@ -1,0 +1,128 @@
+#page-teacher-list .teacher-item {
+  /* Box-model */
+  margin-top: 2.4rem;
+
+  /* Visual */
+  background: var(--color-box-base);
+  border: 1px solid var(--color-line-in-white);
+  border-radius: 0.8rem;
+  overflow: hidden;
+}
+
+#page-teacher-list .teacher-item header {
+  padding: 3.2rem 2rem;
+  display: flex;
+  align-items: center;
+}
+
+#page-teacher-list .teacher-item header img {
+  height: 8rem;
+  width: 8rem;
+  border-radius: 50%;
+}
+
+#page-teacher-list .teacher-item header div {
+  margin-left: 2.4rem;
+}
+
+#page-teacher-list .teacher-item header strong {
+  /* Box-model */
+  display: block;
+
+  /* Typography */
+  font: 700 2.4rem Archivo;
+  color: var(--color-text-title);
+}
+
+#page-teacher-list .teacher-item header span {
+  /* Box-model */
+  margin-top: 0.4rem;
+  display: block;
+
+  /* Typography */
+  font-size: 1.6rem;
+}
+
+#page-teacher-list .teacher-item > p {
+  /* Box-model */
+  padding: 0 2rem;
+
+  /* Typography */
+  font-size: 1.6rem;
+  line-height: 2.8rem;
+}
+
+#page-teacher-list .teacher-item footer {
+  /* Box-model */
+  padding: 3.2rem 2rem;
+  margin-top: 3.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /* Visual */
+  border-top: 1px solid var(--color-line-in-white);
+  background: var(--color-box-footer);
+}
+
+#page-teacher-list .teacher-item footer p strong {
+  /* Box-model */
+  display: block;
+
+  /* Typography */
+  color: var(--color-primary);
+  font-size: 1.6rem;
+}
+
+#page-teacher-list .teacher-item footer button {
+  /* Box-model */
+  height: 5.6rem;
+  width: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  /* Visual */
+  background: var(--color-secundary);
+  border: 0;
+  border-radius: 0.8rem;
+
+  /* Typography */
+  color: var(--color-button-text);
+  font: 700 1.4rem Archivo;
+
+  /* Misc */
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#page-teacher-list .teacher-item footer button:hover {
+  background: var(--color-secundary-dark);
+}
+
+@media (min-width: 700px) {
+  #page-teacher-list .teacher-item header,
+  #page-teacher-list .teacher-item footer {
+    padding: 3.2rem;
+  }
+
+  #page-teacher-list .teacher-item > p {
+    padding: 0 3.2rem;
+  }
+
+  #page-teacher-list .teacher-item footer p strong {
+    display: initial;
+    margin-left: 1.6rem;
+  }
+
+  #page-teacher-list .teacher-item footer button {
+    width: 24.5rem;
+    justify-content: center;
+
+    font-size: 1.6rem;
+  }
+
+  #page-teacher-list .teacher-item footer img {
+    margin-right: 1.6rem;
+  }
+}
