@@ -1,0 +1,11 @@
+.subtitle-right {
+  margin-top: 2.4rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.subtitle-right span {
+  color: var(--color-text-in-primary);
+  margin-left: 2.4rem;
+}

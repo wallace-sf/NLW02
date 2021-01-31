@@ -1,0 +1,89 @@
+.input-block-auth {
+  width: 100%;
+}
+
+.input-block-auth input {
+  width: 100%;
+  height: 7.2rem;
+  outline: 0;
+  padding: 1.4rem 0 1.4rem 2.4rem;
+  border: 1px solid var(--color-line-in-white);
+  background: var(--color-box-footer);
+  color: var(--color-text-base);
+}
+
+.input-block-auth input:focus,
+.input-block-auth input:-webkit-autofill {
+  padding-top: 3.4rem;
+}
+
+.input-block-auth input:not(:focus) ~ label {
+  cursor: auto;
+}
+
+.input-block-auth .rounded-top {
+  border-radius: 8px 8px 0 0;
+}
+
+.input-block-auth .rounded-bottom {
+  border-radius: 0 0 8px 8px;
+}
+
+.input-block-auth .rounded {
+  border-radius: 8px 8px 8px 8px;
+}
+
+.input-block-auth {
+  position: relative;
+}
+
+.input-block-auth label {
+  position: absolute;
+  top: 50%;
+  left: 2.4rem;
+  transform: translate(0, -50%);
+
+  color: var(--color-input-title);
+  transition: .5s;
+}
+
+.input-block-auth input:focus ~ label,
+.input-block-auth input:-webkit-autofill ~ label,
+.input-block-auth .valid {
+ transform: translate(0, -100%);
+ font-size: 12px;
+}
+
+.input-block-auth:focus-within::after {
+  /* Positioning */
+  position: absolute;
+  left: 0;
+  bottom: 1.2rem;
+
+  /* Box-model */
+  width: 2px;
+  height: calc(100% - 2.4rem);
+  content: '';
+  border-radius: 8px;
+
+  /* Visual */
+  background: var(--color-primary-light);
+}
+
+.input-block-auth button {
+  position: absolute;
+  top: calc(50% - 1.2rem);
+  right: 2.7rem;
+
+  display: flex;
+  align-items: center;
+
+  border: 0;
+  background: none;
+  cursor: pointer;
+  outline: 0;
+}
+
+.input-block-auth .view-password img {
+  height: 24px;
+}

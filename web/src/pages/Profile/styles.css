@@ -1,0 +1,43 @@
+#page-profile {
+  height: 100vh;
+  width: 100vw;
+}
+
+#page-profile .page-header {
+  min-height: 53.5rem;
+}
+
+#page-profile .header-content strong {
+  align-self: center;
+}
+
+#page-profile .header-content h3 {
+  align-self: center;
+
+  /* Typography */
+  font-size: 2.4rem;
+  font-weight: normal;
+  color: var(--color-text-in-primary);
+}
+
+#page-profile .input-block {
+  margin-top: 1.4rem;
+}
+
+#page-profile .input-group {
+  margin-top: 0;
+  flex-direction: row;
+}
+
+#page-profile .input-group + .input-group {
+  margin-top: 2.4rem;
+}
+
+#page-profile .input-group .input-block {
+  margin-top: 0;
+}
+
+#page-profile .input-group .input-block + .input-block,
+#page-profile .input-group .select-block + .input-block {
+  margin-left: 3.2rem;
+}

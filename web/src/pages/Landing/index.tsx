@@ -1,48 +1,103 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, FormEvent } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
-import LogoImg from '../../assets/images/logo.svg';
-import landingImg from '../../assets/images/landing.svg';
+import AuthLayout from '../_layouts/auth';
+import InputAuth from '../../components/InputAuth';
+import SubmitButton from '../../components/SubmitButton';
 
-import studyIcon from '../../assets/images/icons/study.svg';
-import giveClassesIcon from '../../assets/images/icons/give-classes.svg';
+import viewPassword from '../../assets/images/icons/view-password.svg';
+import hidePassword from '../../assets/images/icons/hide-password.svg';
 import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg';
 
 import './styles.css';
 
-const Landing = () => {
+const Landing: React.FC = () => {
+  const history = useHistory();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
+
+  const handleOnSubmit = (e: FormEvent) => {
+    e.preventDefault();
+
+    return history.push('/home');
+  };
+
   return (
-    <div id="page-landing">
-      <div id="page-landing-container" className="container">
-        <div className="logo-container">
-          <img src={LogoImg} alt="Proffy" />
-          <h2>Sua plataforma de estudos online.</h2>
+    <AuthLayout>
+      <header>
+        <h1>Fazer login</h1>
+      </header>
+      <form onSubmit={handleOnSubmit}>
+        <div className="input-group">
+          <InputAuth
+            id="email"
+            name="email"
+            type="text"
+            label="E-mail"
+            className="rounded-top"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+          <div className="input-block-login">
+            <InputAuth
+              id="password"
+              name="password"
+              label="Senha"
+              type={isPasswordHidden ? 'password' : 'text'}
+              className="rounded-bottom"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            >
+              <button
+                type="button"
+                onClick={() => setIsPasswordHidden(!isPasswordHidden)}
+              >
+                {isPasswordHidden ? (
+                  <img src={viewPassword} alt="Visualizar senha" />
+                ) : (
+                  <img src={hidePassword} alt="Esconder senha" />
+                )}
+              </button>
+            </InputAuth>
+          </div>
         </div>
-
-        <img
-          src={landingImg}
-          alt="Plataforma de estudos"
-          className="hero-image"
+        <div className="options">
+          <div className="checkbox">
+            <label htmlFor="rememberMe" className="checkbox-label">
+              <input
+                type="checkbox"
+                id="rememberMe"
+                name="rememberMe"
+                checked={rememberMe}
+                onChange={e => setRememberMe(e.target.checked)}
+              />
+              <span className="checkbox-custom" />
+            </label>
+            <span>Lembrar-me</span>
+          </div>
+          <Link to="/forgot-password">Esqueci minha senha</Link>
+        </div>
+        <SubmitButton
+          label="Entrar"
+          className={`${email.length > 0 && password.length > 0 && 'filled'}`}
+          disabled={!(email.length > 0 && password.length > 0)}
         />
-
-        <div className="buttons-container">
-          <Link to="/study" className="study">
-            <img src={studyIcon} alt="Estudar" />
-            Estudar
-          </Link>
-
-          <Link to="/give-classes" className="give-classes">
-            <img src={giveClassesIcon} alt="Estudar" />
-            Dar aula
-          </Link>
-        </div>
-
-        <span className="total-connections">
-          Total de 200 conexões já realizadas
+      </form>
+      <footer className="footer-login">
+        <section className="register-link">
+          <span>Não tem conta?</span>
+          <Link to="/register">Cadastre-se</Link>
+        </section>
+        <section className="free-message">
+          <span>É de graça</span>
           <img src={purpleHeartIcon} alt="Coração roxo" />
-        </span>
-      </div>
-    </div>
+        </section>
+      </footer>
+    </AuthLayout>
   );
 };
+
 export default Landing;

@@ -1,39 +1,60 @@
+/* eslint-disable camelcase */
 import React from 'react';
 
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg';
 
-// import { Container } from './styles';
+import './styles.css';
+import api from '../../services/api';
 
-const TeacherItem = () => {
+interface TeacherItemProps {
+  teacher: {
+    id: number;
+    avatar: string;
+    bio: string;
+    cost: number;
+    name: string;
+    subject: string;
+    user_id: number;
+    whatsapp: string;
+  };
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
+  const createNewConnection = () => {
+    api.post('/connections', {
+      user_id: teacher.user_id,
+    });
+  };
+
   return (
     <article className="teacher-item">
       <header>
-        <img
-          src="https://avatars0.githubusercontent.com/u/7969483?s=460&u=6bc5c02f2342e5446fa637dad296b88634ab1a1c&v=4"
-          alt="Wallace Ferreira"
-        />
+        <img src={teacher.avatar} alt={teacher.name} />
         <div>
-          <strong>Wallace Ferreira</strong>
-          <span>Desenvolvedor</span>
+          <strong>{teacher.name}</strong>
+          <span>{teacher.subject}</span>
         </div>
       </header>
-      <p>
-        Entusiasta das melhores tecnologias de química avançada.
-        <br />
-        <br />
-        Apaixonado por explodir coisas em laboratório e por mudar a vida das
-        pessoas através de experiências. Mais de 200.000 pessoas já passaram por
-        uma das minhas explosões.
-      </p>
+      <p>{teacher.bio}</p>
       <footer>
         <p>
           Preço/Hora
-          <strong>R$ 20,00</strong>
+          <strong>
+            {new Intl.NumberFormat('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
+            }).format(teacher.cost)}
+          </strong>
         </p>
-        <button type="button">
+        <a
+          href={`https://wa.me/${teacher.whatsapp}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={createNewConnection}
+        >
           <img src={whatsappIcon} alt="Whatsapp" />
           Entrar em contato
-        </button>
+        </a>
       </footer>
     </article>
   );

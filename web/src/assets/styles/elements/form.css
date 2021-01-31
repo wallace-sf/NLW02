@@ -1,0 +1,193 @@
+.form label {
+  color: var(--color-text-complement);
+}
+
+.form main {
+  /* Box-model */
+  margin: -3.2rem auto 3.2rem;
+  padding-top: 6.4rem;
+  max-width: 74rem;
+  width: 100%;
+
+  /* Visual */
+  background: var(--color-box-base);
+  border-radius: 0.8rem;
+
+  /* Misc */
+  overflow: hidden;
+}
+
+
+.form main fieldset {
+  /* Box-model */
+  padding: 0 2.4rem;
+
+  /* Visual */
+  border: 0;
+}
+
+
+.form main fieldset + fieldset {
+  margin-top: 6.4rem;
+}
+
+.form main fieldset .schedule-item button {
+  border: 0;
+  background: none;
+  padding: 0 2.4rem 0 2.4rem;
+  font: 14px Archivo;
+  color: var(--color-button-text-cancel);
+  line-height: 2.4rem;
+  font-weight: 600;
+}
+
+.form main fieldset .schedule-item .remove-schedule-item-container {
+  grid-column: 1 / 4;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: 1fr;
+  align-items: center;
+  width: 100%;
+  padding-top: 1.6rem;
+  padding-bottom: 1.6rem;
+}
+
+.form main fieldset .schedule-item .remove-schedule-item-container hr {
+  width: 100%;
+}
+
+.form main fieldset legend {
+  /* Box-model */
+  width: 100%;
+  margin-bottom: 2.4rem;
+  padding-bottom: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /* Visual */
+  border-bottom: 1px solid var(--color-line-in-white);
+
+  /* Typography */
+  font: 700 2.4rem Archivo;
+  color: var(--color-text-title);
+}
+
+.form main fieldset legend button {
+  /* Box-model */
+  background: none;
+  border: 0;
+
+  /* Typography */
+  color: var(--color-primary);
+  font: 700 1.6rem Archivo;
+
+  /* Misc */
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.form main fieldset legend button:hover {
+  color: var(--color-primary-dark)
+}
+
+.form main footer {
+  /* Box-model */
+  margin-top: 6.4rem;
+  padding: 4rem 2.4rem;
+
+  /* Visual */
+  background: var(--color-box-footer);
+  border-top: 1px solid var(--color-line-in-white);
+}
+
+.form main footer p {
+  /* Box-model */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Visual */
+  font-size: 1.4rem;
+
+  /* Typography */
+  line-height: 2.4rem;
+  color: var(--color-text-complement);
+}
+
+.form main footer p img {
+  margin-right: 2rem;
+}
+
+.form main footer button {
+  /* Box-model */
+  margin-top: 3.2rem;
+  width: 100%;
+  height: 5.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Visual */
+  background: var(--color-secundary);
+  border: 0;
+  border-radius: 0.8rem;
+  cursor: pointer;
+
+  /* Typography */
+  color: var(--color-button-text);
+  font: 700 1.6rem Archivo;
+  text-decoration: none;
+
+  /* Misc */
+  transition: background-color 0.2s;
+}
+
+.form main footer button:hover {
+  background: var(--color-secundary-dark);
+}
+
+@media (min-width: 700px) {
+  .form {
+    max-width: 100vw;
+  }
+
+  .form .page-header .header-content {
+    margin-bottom: 0;
+  }
+
+  .form main fieldset {
+    padding: 0 6.4rem;
+  }
+
+  .form main fieldset .schedule-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    column-gap: 1.6rem;
+  }
+
+  .form main fieldset .schedule-item .input-block {
+    margin-top: 0 !important;
+  }
+
+  .form main fieldset .input-block + .textarea-block,
+  .form main fieldset .select-block + .input-block {
+    margin-top: 2.4rem;
+  }
+
+  .form main footer {
+    padding: 4.0rem 6.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .form main footer p {
+    justify-content: space-between;
+  }
+
+  .form main footer button {
+    margin-top: 0;
+    width: 20rem;
+  }
+}

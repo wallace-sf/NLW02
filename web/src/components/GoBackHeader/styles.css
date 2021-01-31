@@ -1,0 +1,21 @@
+#goback-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1.6rem calc(50% - 17.6rem);
+  width: 100%;
+}
+
+#goback-container a {
+  height: 4.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: none;
+  border: none;
+}
+
+#goback-container a:focus {
+  outline: 0;
+}

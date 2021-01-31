@@ -74,7 +74,7 @@
   font-size: 1.6rem;
 }
 
-#page-teacher-list .teacher-item footer button {
+#page-teacher-list .teacher-item footer a {
   /* Box-model */
   height: 5.6rem;
   width: 20rem;
@@ -90,13 +90,14 @@
   /* Typography */
   color: var(--color-button-text);
   font: 700 1.4rem Archivo;
+  text-decoration: none;
 
   /* Misc */
   cursor: pointer;
   transition: 0.2s;
 }
 
-#page-teacher-list .teacher-item footer button:hover {
+#page-teacher-list .teacher-item footer a:hover {
   background: var(--color-secundary-dark);
 }
 

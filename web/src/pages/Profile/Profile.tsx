@@ -1,43 +1,22 @@
-/* eslint-disable no-alert */
 /* eslint-disable camelcase */
-import React, { useState, useRef, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useRef } from 'react';
 import { SubmitHandler, FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import ld from 'lodash';
 
 import PageHeader from '../../components/PageHeader';
 import Input from '../../components/Input';
-import InputMask from '../../components/InputMask';
 import TextArea from '../../components/TextArea';
 import Select from '../../components/Select';
+import InputMask from '../../components/InputMask';
+import InputAvatar from '../../components/InputAvatar';
 
-import {
-  loadImage,
-  getImageOrientation,
-} from '../../utils/getImageOrientation';
-import api from '../../services/api';
 import { phoneMask } from '../../utils/phone';
 
+import backgroundHeader from '../../assets/images/backgroundHeader.svg';
 import warningIcon from '../../assets/images/icons/warning.svg';
-import rocketIcon from '../../assets/images/icons/rocket.svg';
-import defaultAvatar from '../../assets/images/default-avatar.png';
 
 import './styles.css';
-
-interface TeacherFormProps {
-  name: string;
-  avatar: string;
-  whatsapp: string;
-  bio: string;
-  subject: string;
-  cost: string;
-  scheduleItems: Array<{
-    week_day: string;
-    from: string;
-    to: string;
-  }>;
-}
 
 interface ScheduleItemsProps {
   week_day: string;
@@ -78,12 +57,16 @@ const initialValues = {
   to: '',
 };
 
-const TeacherForm: React.FC = () => {
+const Profile: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const history = useHistory();
 
   const [scheduleItems, setScheduleItems] = useState<ScheduleItemsProps[]>([]);
-  const [avatarOrientation, setAvatarOrientation] = useState('landscape');
+
+  const handleOnSubmit: SubmitHandler = (data, { reset }) => {
+    console.log(data);
+
+    reset();
+  };
 
   const handleAddNewScheduleItem = () => {
     const newScheduleItem: ScheduleItemsProps = {
@@ -102,65 +85,41 @@ const TeacherForm: React.FC = () => {
     return setScheduleItems(cloneScheduleItems);
   };
 
-  const handleOnSubmit: SubmitHandler<TeacherFormProps> = (data, { reset }) => {
-    const formattedData = { ...data, cost: Number(data.cost) };
-
-    api
-      .post('/classes', formattedData)
-      .then(() => {
-        alert('Cadastro realizado com sucesso!');
-        history.push('/home');
-      })
-      .catch(() => alert('Erro no cadastro.'));
-
-    reset();
-  };
-
-  useEffect(() => {
-    loadImage('').then(response =>
-      setAvatarOrientation(getImageOrientation(response)),
-    );
-  }, []);
-
   return (
-    <div id="page-teacher-form" className="container form">
-      <PageHeader
-        name="Dar aulas"
-        headerContentStyle={{ paddingTop: '6.4rem', paddingBottom: '9.6rem' }}
-      >
-        <strong>Que incrível que você quer dar aulas.</strong>
-        <section>
-          <p>O primeiro passo é preencher este formulário de inscrição.</p>
-          <div className="subtitle-right">
-            <img src={rocketIcon} alt="Foguete" />
-            <span>
-              Prepara-se!
-              <br />
-              Vai ser o máximo
-            </span>
-          </div>
-        </section>
-      </PageHeader>
-
-      <main>
-        <Form
-          ref={formRef}
-          initialData={initialValues}
-          onSubmit={handleOnSubmit}
+    <div id="page-profile" className="form">
+      <Form ref={formRef} initialData={initialValues} onSubmit={handleOnSubmit}>
+        <PageHeader
+          name="Meu perfil"
+          headerContentStyle={{
+            minWidth: 1110,
+            backgroundImage: `url(${backgroundHeader})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            backgroundSize: 'contain',
+          }}
         >
+          <InputAvatar name="avatar" />
+          <strong>Tiago Luchtenberg</strong>
+          <h3>Geografia</h3>
+        </PageHeader>
+        <main>
           <fieldset>
             <legend>Seus dados</legend>
             <div className="input-group">
-              <div className="avatar-container">
-                <div className="mask-avatar">
-                  <img
-                    src={defaultAvatar}
-                    className={`${avatarOrientation}`}
-                    alt="Avatar"
-                  />
-                </div>
-                <span>Tiago Luchtenberg</span>
-              </div>
+              <Input name="name" label="Nome" placeholder="Ex: João" />
+              <Input
+                name="last_name"
+                label="Sobrenome"
+                placeholder="Ex: Carraro"
+              />
+            </div>
+            <div className="input-group">
+              <Input
+                type="email"
+                name="email"
+                label="E-mail"
+                placeholder="Ex: email@email.com"
+              />
               <InputMask
                 name="whatsapp"
                 label="Whatsapp"
@@ -168,7 +127,6 @@ const TeacherForm: React.FC = () => {
                 type="tel"
                 guide={false}
                 placeholder="Ex: (11) 1234-5678"
-                containerStyle={{ maxWidth: '22.4rem' }}
               />
             </div>
             <TextArea
@@ -176,6 +134,7 @@ const TeacherForm: React.FC = () => {
               label="Biografia"
               hint="Máximo 300 caracteres"
               maxLength={300}
+              placeholder="Ex: Amante de ciências naturais, estou na universidade de Cambridge..."
             />
           </fieldset>
 
@@ -189,6 +148,7 @@ const TeacherForm: React.FC = () => {
                 name="cost"
                 label="Custo da sua hora por aula"
                 placeholder="Ex: R$ 20,00"
+                min="0"
               />
             </div>
           </fieldset>
@@ -233,10 +193,10 @@ const TeacherForm: React.FC = () => {
             </p>
             <button type="submit">Salvar cadastro</button>
           </footer>
-        </Form>
-      </main>
+        </main>
+      </Form>
     </div>
   );
 };
 
-export default TeacherForm;
+export default Profile;

@@ -1,0 +1,38 @@
+.avatar .mask-avatar {
+  height: 18rem;
+  width: 18rem;
+}
+
+.avatar {
+  position: relative;
+  margin: 0 auto;
+  margin-bottom: 3.2rem;
+}
+
+.avatar input {
+  display: none;
+}
+
+.avatar label .avatar-button {
+  position: absolute;
+  right: 0.4rem;
+  bottom: 0.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4.8rem;
+  width: 4.8rem;
+  background-color: var(--color-secundary);
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.avatar label .avatar-button:hover {
+  background-color: var(--color-secundary-lighten);
+  transition: 0.2s;
+}
+
+.avatar .avatar-button img {
+  height: 2.4rem;
+  width: 2.4rem;
+}

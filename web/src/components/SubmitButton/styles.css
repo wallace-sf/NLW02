@@ -1,0 +1,24 @@
+.submit-button {
+  margin-top: 4rem;
+  width: 100%;
+  height: 56px;
+  border: none;
+  border-radius: 8px;
+  outline: 0;
+  cursor: pointer;
+}
+
+.submit-button:disabled {
+  background-color: var(--color-disabled);
+  color: var(--color-text-complement);
+  cursor: not-allowed;
+}
+
+.submit-button.filled {
+  background-color: var(--color-secundary);
+  color: var(--color-button-text);
+}
+
+.submit-button:hover {
+  opacity: 0.7;
+}
